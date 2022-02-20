@@ -1,25 +1,26 @@
-<template></template>
+<template>
+  <h1>Bonjour {{ user.prenom }}</h1>
+  <h1>Compteur : {{ state.compteur }}</h1>
+  <button @click="incCompteur()">+1</button>
+</template>
 
 <script setup lang="ts">
-const obj = { prenom: 'Jean', age: 12 };
+import { reactive, nextTick } from 'vue';
 
-function render() {
-  console.log('Mise à jour du template par Vue.js');
-}
-
-const proxy = new Proxy(obj, {
-  get(obj, prop) {
-    render();
-    return obj[prop];
-  },
-  set(obj, prop) {
-    obj[prop] = value;
-    render();
-    return true;
-  },
+const state = reactive({
+  user: { prenom: 'Jean', age: 21 },
+  compteur: 0,
 });
 
-console.log(proxy.prenom);
+let user = { state };
+
+function incCompteur() {
+  user.prenom = user.prenom === 'Jean' ? 'Paul' : 'Jean';
+  state.compteur++;
+  nextTick(() => {
+    console.log('Tick');
+  });
+}
 </script>
 
 <style></style>
