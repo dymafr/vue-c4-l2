@@ -12,7 +12,7 @@ const state = reactive({
   compteur: 0,
 });
 
-let user = { state };
+let {user} = state;
 
 function incCompteur() {
   user.prenom = user.prenom === 'Jean' ? 'Paul' : 'Jean';
