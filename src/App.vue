@@ -1,7 +1,7 @@
 <template>
   <h1>Bonjour {{ user.prenom }}</h1>
   <h1>Compteur : {{ state.compteur }}</h1>
-  <button @click="incCompteur()">+1</button>
+  <button @click="incCompteur">+1</button>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ const state = reactive({
   compteur: 0,
 });
 
-let {user} = state;
+let { user } = state;
 
 function incCompteur() {
   user.prenom = user.prenom === 'Jean' ? 'Paul' : 'Jean';
